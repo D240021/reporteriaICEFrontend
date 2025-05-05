@@ -1,0 +1,126 @@
+<div class="cont-principal">
+
+
+  <div class="cont-consultar-operario">
+
+    <h2>Consultar Operario</h2>
+
+    @if (usuariosOriginales) {
+
+    @if (usuariosOriginales.length > 0 ) {
+
+
+    <form class="cont-buscador row align-items-center" [formGroup]="contenedorFormulario">
+
+      <div class="contenedor-filtro col-md-4">
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor" class="form-control" [formControl]="contenedorFormulario.controls.valor">
+      </div>
+
+
+      <div class="contenedor-filtro col-md-4">
+        <label for="filtro">Filtro:</label>
+        <select id="filtro" class="form-select" [formControl]="contenedorFormulario.controls.filtro">
+          <option value="identificador">Identificador</option>
+          <option value="nombre">Nombre</option>
+          <option value="apellido">Apellidos</option>
+          <option value="nombreUsuario">Nombre de usuario</option>
+          <option value="correo">Correo</option>
+          <option value="unidadRegional">Unidad Regional</option>
+          <option value="rol">Ocupación</option>
+        </select>
+      </div>
+
+    </form>
+
+
+    <div class="cont-tabla row">
+
+      <table class="col-md-12" mat-table [dataSource]="usuarios">
+
+        <ng-container matColumnDef="IDENTIFICADOR">
+          <th mat-header-cell *matHeaderCellDef> IDENTIFICADOR</th>
+          <td mat-cell *matCellDef="let operario">
+            {{operario.identificador}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NOMBRE">
+          <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+          <td mat-cell *matCellDef="let operario">
+            {{operario.nombre}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="APELLIDOS">
+          <th mat-header-cell *matHeaderCellDef> APELLIDOS </th>
+          <td mat-cell *matCellDef="let operario">
+            {{operario.apellido}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NOMBRE DE USUARIO">
+          <th mat-header-cell *matHeaderCellDef> NOMBRE DE USUARIO </th>
+          <td mat-cell *matCellDef="let operario">
+            {{operario.nombreUsuario}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CORREO">
+          <th mat-header-cell *matHeaderCellDef> CORREO </th>
+          <td mat-cell *matCellDef="let operario">
+            {{operario.correo}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="UNIDAD REGIONAL">
+          <th mat-header-cell *matHeaderCellDef> UNIDAD REGIONAL </th>
+          <td mat-cell *matCellDef="let operario">
+            @if (operario.nombreUnidadRegional) {
+            {{operario.nombreUnidadRegional}}
+            }
+            @else {
+            No aplica
+            }
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="OCUPACIÓN">
+          <th mat-header-cell *matHeaderCellDef> OCUPACIÓN </th>
+          <td mat-cell *matCellDef="let operario">
+            {{operario.nombreRol}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GESTIÓN">
+          <th mat-header-cell *matHeaderCellDef> GESTIÓN </th>
+          <td mat-cell *matCellDef="let operario">
+            <mat-icon (click)="abrirEditarOperario(operario)">create</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="atributosOperador"></tr>
+        <tr mat-row *matRowDef="let row; columns: atributosOperador;"></tr>
+      </table>
+
+      <div class="col-md-6">
+        <button class="btn btn-volver" routerLink="/menu-administrador">Volver</button>
+      </div>
+
+
+
+    </div>
+
+
+    }
+
+    @else {
+    <p>No existen usuarios registrados</p>
+    }
+
+    }
+    @else {
+    <animacion-carga></animacion-carga>
+    }
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div>
+    <header>
+        <h1>Iniciar Sesión</h1>
+    </header>
+
+    <section>
+        <form [formGroup]="contenedorFormulario">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre de usuario</mat-label>
+                <input matInput type="text" placeholder="Inserte su usuario"
+                    [formControl]='contenedorFormulario.controls.nombreUsuario'>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" placeholder="Inserte su contraseña"
+                    [formControl]='contenedorFormulario.controls.contrasenia'>
+            </mat-form-field>
+            <span *ngIf="mensajeCredenciales" class="mensajeError">{{ mensajeCredenciales }}</span>
+            <button mat-flat-button (click)="verificarCredencialesUsuario()"
+                [disabled]="contenedorFormulario.invalid" id="idSesion">INGRESAR</button>
+
+            @if (habilitarCarga) {
+            <animacion-carga></animacion-carga>
+            }
+
+        </form>
+
+    </section>
+
+</div>

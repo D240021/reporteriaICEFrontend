@@ -1,0 +1,42 @@
+<div *ngIf="!mostrarEditar; else editarInformeTemplate">
+    <!-- Contenido principal del MenuTpmComponent -->
+    <header>
+      <h1 class="text-center">BIENVENIDO, {{usuarioIngresado.nombre.toLocaleUpperCase()}}</h1>
+      <button mat-flat-button (click)="abrirCuadroDialogo()">SALIR</button>
+    </header>
+  
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Crear reporte">
+        <crear-reporte (reporteCreado)="cargarInformacionGeneral()"></crear-reporte>
+      </mat-tab>
+      <mat-tab label="Editar reporte">
+        <ng-container *ngIf="informes && informes.length > 0; else noInformes" id="informes">
+          <mat-card *ngFor="let informe of informes" appearance="outlined" (click)="abrirEditarInforme(informe)">
+            <mat-card-header>
+              <mat-card-title>
+                Informe de equipo
+                {{ informe.tipo === 1 ? 'de Impedancia' : 'Diferencial' }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                <ng-container *ngIf="informe.reporteAsociado; else cargando">
+                  Fecha y hora: {{ informe.reporteAsociado.fechaHora }}
+                </ng-container>
+                <ng-template #cargando>
+                  <animacion-carga></animacion-carga>
+                </ng-template>
+              </mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+        </ng-container>
+        <ng-template #noInformes class="sinInformes">
+          No existen informes disponibles
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+    <footer (pointerenter)="abrirDialogoInformativo()" (pointerleave)="cerrarDialogoInformativo()" class="hover-target ms-2"><img src="iconoInfo.png" alt="Info"></footer>
+  </div>
+  
+  <ng-template #editarInformeTemplate>
+     <editar-reporte-tpm [informeATrabajar]="informeSeleccionado" (cerrarComponente)="cerrarEditar()"> </editar-reporte-tpm>
+  </ng-template>
+  

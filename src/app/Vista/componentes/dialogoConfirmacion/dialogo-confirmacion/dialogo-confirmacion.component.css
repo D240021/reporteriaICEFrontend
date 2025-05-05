@@ -1,0 +1,69 @@
+.manto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+  .manto > div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    text-align: center;
+  }
+
+h2[mat-dialog-title] {
+  color: var(--color-principal);
+  margin-bottom: 1rem;
+}
+
+mat-dialog-content p {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+mat-dialog-actions {
+   text-align:center;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+.btn-limpiar {
+  background-color: #545454;
+  color: white;
+}
+
+.btn-agregar {
+  background-color: #ffeb3b;
+  color: black;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+
+@media (max-width: 432px) {
+  mat-dialog-actions {
+    justify-content: center;
+  }
+}

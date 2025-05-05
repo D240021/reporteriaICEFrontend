@@ -1,0 +1,239 @@
+<div class="form-container">
+  <form [formGroup]="contenedorFormulario">
+    <h2>Editar Informe</h2>
+    @if (informeATrabajar) {
+    <span>Informe:
+      @if(informeATrabajar.tipo === 1){
+      Impedancia
+      }@else {
+      Diferencial
+      }
+    </span>
+    <hr />
+    <span>Subestación: {{subestacionAsociada?.nombreUbicacion}}</span>
+    <hr />
+    <section class="seccion-informe datos-generales-linea">
+
+      <div class="datos-generales columna">
+        <h4>Datos Generales</h4>
+
+        <div class="row">
+          <label class="col-md-4">Evento:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.evento" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Fecha:</label>
+          <input class="col-md-8" type="date" [formControl]="contenedorFormulario.controls.fecha" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Hora:</label>
+          <input class="col-md-8" type="time" [formControl]="contenedorFormulario.controls.hora" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Subestación:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.subestacion" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">LT:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.lt" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Equipo:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.equipo" />
+        </div>
+      </div>
+
+      <!-- Datos de Linea -->
+      <div class="datos-linea columna">
+        <h4>Datos de la Línea</h4>
+
+        <div class="row">
+          <label class="col-md-4">OT:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.ot" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Aviso:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.aviso" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">SAP:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.sap" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Distancia:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.distancia" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Funcion:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.funcion" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">ZONA:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.zona" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Corrientes de Falla y Tiempos de Disparo-->
+    <section class="seccion-informe corriente-falla-tiempos-disparo">
+
+      <!-- Corrientes de Falla -->
+      <div class="corriente-falla columna">
+        <h4>Corriente de Falla</h4>
+
+        <div class="row">
+          <label class="col-md-4">Real R:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.realR" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Real S:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.realS" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Real T:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.realT" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Acumulada R:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.acumuladaR" />
+        </div>
+
+        <div class="row">
+          <label class="col-md-4">Acumulada S:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.acumuladaS" />
+        </div>
+
+        <div class="row">
+          <label class="col-md-4">Acumulada T:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.acumuladaT" />
+        </div>
+      </div>
+
+      <!-- Tiempos de Disparo -->
+      <div class="tiempo-disparo columna">
+        <h4>Tiempos de Disparo</h4>
+
+        <div class="row">
+          <label class="col-md-4">R:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.r" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">S:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.s" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">T:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.t" />
+        </div>
+
+        <div class="row">
+          <label class="col-md-4">Reserva:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.reserva" />
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Recierre -->
+    <!--
+      <h4>Recierre</h4>
+      <section class="seccion-informe recierre">
+        <input type="text" />
+      </section>
+     -->
+    <!-- Distancia de Falla -->
+    <h4>Distancia de Falla</h4>
+    <section class="seccion-informe ditancia-falla">
+
+      <div class="col-md-6">
+
+        <div class="row">
+          <label class="col-md-4">Distancia (KM):</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.distanciaKm" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Distancia (%):</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.distanciaPor" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Distancia Reportada:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.distanciaReportada" />
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+        <div class="row">
+          <label class="col-md-4">Distancia Doble Temporal:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.distanciaDobleTemporal" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Error:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.error" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Error Doble:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.errorDoble" />
+        </div>
+      </div>
+
+
+
+    </section>
+
+    <!-- Teleprotección e Interruptor -->
+    <section class="seccion-informe teleproteccion-interruptor">
+      <div class="teleproteccion columna">
+        <h4>Teleprotección</h4>
+
+        <div class="row">
+          <label class="col-md-4">TX_TEL:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.txTel" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">RX_TEL:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.rxTel" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Tiempo MPLS:</label>
+          <input class="col-md-8" type="text" [formControl]="contenedorFormulario.controls.tiempoMpls" />
+        </div>
+      </div>
+
+      <!-- Botones
+      <div class="interruptor columna">
+        <h4>Interruptor</h4>
+        <div class="row">
+          <label class="col-md-4">Tiempo Apertura:</label>
+          <input class="col-md-8" type="text" />
+        </div>
+        <div class="row">
+          <label class="col-md-4">Tiempo de Cierre:</label>
+          <input class="col-md-8" type="text" />
+        </div>
+      </div>
+         -->
+    </section>
+
+    <!-- Botones -->
+    <div class="contenedor-botones row mb-3 align-items-center">
+
+      <div class="col-md-3 col-12">
+        <button class="btn btn-volver" mat-stroked-button type="button"
+          (click)="verificarAbandonoFormulario()">SALIR</button>
+      </div>
+
+      <div class="col-md-9 col-12">
+        <button class="btn btn-limpiar" mat-stroked-button type="button"
+          [disabled]="contenedorFormulario.pristine || accionesFormulario.esFormularioVacio(contenedorFormulario)">LIMPIAR</button>
+        <button class="btn btn-agregar" mat-stroked-button type="submit"
+          [disabled]="contenedorFormulario.invalid  || contenedorFormulario.pristine"
+          (click)="abrirCuadroDialogoConfirmacionGuardado()">GUARDAR</button>
+      </div>
+    </div>
+    }
+    @else {
+    <animacion-carga></animacion-carga>
+    }
+  </form>
+</div>

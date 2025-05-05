@@ -1,0 +1,17 @@
+<div>
+    <form (submit)="emitirBusqueda()">
+        <mat-form-field appearance="outline">
+            <mat-label>{{accionInput}}</mat-label>
+            <input type="text" placeholder="Inserte {{accionPlaceholder}}" matInput [matAutocomplete]="auto"
+                [formControl]="control">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="opcionSeleccionada($event)">
+                <mat-option *ngFor="let dato of opcionesFiltradas | async" [value]="dato">
+                    <span>{{dato.identificador}}</span> {{dato.nombre}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <button mat-fab type="submit" [disabled]="control.invalid">
+            <mat-icon>search</mat-icon>
+        </button>
+    </form>
+</div>

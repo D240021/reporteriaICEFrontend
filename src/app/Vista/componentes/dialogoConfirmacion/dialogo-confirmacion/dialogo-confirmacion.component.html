@@ -1,0 +1,26 @@
+<div class="manto">
+
+
+  <div>
+
+    <h2 mat-dialog-title>{{datosComponente.titulo}}</h2>
+
+    <mat-dialog-content>
+      <p>{{datosComponente.descripcion}}</p>
+
+      <mat-dialog-actions>
+
+        <button class="btn btn-limpiar" type="button"
+                (click)="cerrarCuadroDialogo('Cerrar')">
+          CANCELAR
+        </button>
+        <button class="btn btn-agregar" type="button"
+                (click)="salirCuadroDialogo()">
+          CONFIRMAR
+        </button>
+      </mat-dialog-actions>
+
+    </mat-dialog-content>
+
+  </div>
+</div>

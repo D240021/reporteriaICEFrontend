@@ -1,0 +1,138 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-principal);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+header button {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #545454;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+header button:hover {
+    background-color: #333;
+}
+
+
+mat-tab-group {
+    margin: 20px;
+}
+
+mat-card {
+    margin: 10px auto;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    cursor: pointer;
+}
+
+mat-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+mat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+}
+
+mat-card-title button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+mat-card-title button:hover {
+    transform: scale(1.1);
+}
+
+mat-card-subtitle {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    mat-card {
+        margin: 10px 5px;
+        padding: 10px;
+    }
+
+    mat-card-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contenedor-form {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 1000;
+}
+
+.hover-target {
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+}

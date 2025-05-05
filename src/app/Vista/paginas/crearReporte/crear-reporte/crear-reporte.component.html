@@ -1,0 +1,113 @@
+<div class="form-container">
+  <form [formGroup]="contenedorFormulario">
+    <h2 class="text-center">Crear nuevo reporte</h2>
+
+    @if (subestaciones && lineasTransmision && supervisores && tecnicosTLT) {
+    <section class="row mb-3 align-items-center">
+      <label class="col-md-4">LINEA DE TRANSMISION:</label>
+      <div class="col-md-8">
+        <select [formControl]="contenedorFormulario.controls.lineaTransmisionId">
+          @for (linea of lineasTransmision; track $index) {
+
+          <option value={{linea.id}}>
+            <span>{{linea.identificador}}</span>
+            {{linea.nombreUbicacion}}
+          </option>
+          }
+        </select>
+      </div>
+      <span class="errores">{{accionesFormulario.obtenerErroresLineaTransmisionId(contenedorFormulario)}}</span>
+      <span *ngIf="lineasTransmision.length === 0" class="errores">Debe registrar líneas de transmisión
+        para poder avanzar</span>
+    </section>
+
+    <section class="row mb-3 align-items-center">
+      <label class="col-md-4">SUBESTACIÓN ASOCIADA 1</label>
+      <div class="col-md-8">
+        <select [formControl]="contenedorFormulario.controls.subestacionA">
+          @for (subestacion of subestaciones; track $index) {
+
+          <option value={{subestacion.id}}>
+            <span>{{subestacion.identificador}}</span>
+            {{subestacion.nombreUbicacion}}
+          </option>
+          }
+        </select>
+      </div>
+      <span class="errores">{{accionesFormulario.obtenerErroresSubestacionId(contenedorFormulario)}}</span>
+      <label class="col-md-4">SUBESTACIÓN ASOCIADA 2</label>
+      <div class="col-md-8">
+        <select [formControl]="contenedorFormulario.controls.subestacionB">
+          @for (subestacion of subestaciones; track $index) {
+
+          <option value={{subestacion.id}}>
+            <span>{{subestacion.identificador}}</span>
+            {{subestacion.nombreUbicacion}}
+          </option>
+          }
+        </select>
+      </div>
+      <span class="errores">{{accionesFormulario.obtenerErroresSubestacionId(contenedorFormulario)}}</span>
+      <span *ngIf="subestaciones.length === 0" class="errores">Debe registrar subestaciones
+        para poder avanzar</span>
+    </section>
+
+    <section class="row mb-3 align-items-center">
+      <label class="col-md-4">SUPERVISOR:</label>
+      <div class="col-md-8">
+        <select [formControl]="contenedorFormulario.controls.usuarioSupervisorId">
+          @for (supervisor of supervisores; track $index) {
+
+          <option value={{supervisor.id}}>
+            <span>{{supervisor.identificador}}</span>
+            {{supervisor.nombre}} {{supervisor.apellido}}
+          </option>
+          }
+        </select>
+      </div>
+      <span class="errores">{{accionesFormulario.obtenerErroresSupervisorId(contenedorFormulario)}}</span>
+      <span *ngIf="supervisores.length === 0" class="errores">Debe registrar supervisores
+        para poder avanzar</span>
+    </section>
+
+    <section class="row mb-3 align-items-center">
+      <label class="col-md-4">TÉCNICO DE LÍNEA:</label>
+      <div class="col-md-8">
+        <select [formControl]="contenedorFormulario.controls.tecnicoLineaId">
+          @for (tecnicoTLT of tecnicosTLT; track $index) {
+
+          <option value={{tecnicoTLT.id}}>
+            <span>{{tecnicoTLT.identificador}}</span>
+            {{tecnicoTLT.nombre}} {{tecnicoTLT.apellido}}
+          </option>
+          }
+        </select>
+      </div>
+      <span class="errores">{{accionesFormulario.obtenerErroresTecnicoLineaId(contenedorFormulario)}}</span>
+      <span *ngIf="tecnicosTLT.length === 0" class="errores">Debe registrar técnicos
+        para poder avanzar</span>
+    </section>
+    <span [ngClass]="{'mensaje-exito': exitoOperacion, 'mensaje-error': !exitoOperacion}">
+      {{mensajeResultado}}
+    </span>
+
+    <div class="contenedor-botones row mb-3 align-items-center">
+      <!-- <div class="col-md-3 col-12">
+        <button class="btn btn-volver" type="button" (click)="seguridadService.cerrarSesion()">VOLVER</button>
+      </div> -->
+      <div class="col-md-9 col-12">
+        <button class="btn btn-limpiar" type="button"
+          (click)="accionesFormulario.limpiarFormulario(contenedorFormulario)"
+          [disabled]="contenedorFormulario.pristine">LIMPIAR</button>
+        <button class="btn btn-agregar" type="submit" [disabled]="contenedorFormulario.invalid"
+          (click)="generarReporte()">GENERAR</button>
+      </div>
+    </div>
+    }
+
+    @else {
+    <animacion-carga></animacion-carga>
+    }
+
+  </form>
+</div>

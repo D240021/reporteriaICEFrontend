@@ -1,0 +1,30 @@
+
+form {
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0 .5rem;
+}
+
+button {
+    background-color: var(--color-terciario-fondo);
+}
+
+mat-option {
+    background-color: #72ccf2;
+    color: var(--color-secundario);
+}
+
+
+span {
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
+
+span, mat-option, mat-label, mat-input::placeholder, mat-input {
+    font-family: var(--fuente-poppins);
+}
+

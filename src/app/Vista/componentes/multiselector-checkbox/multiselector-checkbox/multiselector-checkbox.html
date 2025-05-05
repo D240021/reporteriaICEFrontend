@@ -1,0 +1,18 @@
+<div>
+
+  <div (mouseleave)="mostrarDesplegable = false">
+    <button class="drop-toggle btn flat" (click)="mostrarDesplegable=!mostrarDesplegable">
+      <span *ngIf="listaSeleccionada.length<=0">Seleccionar</span>
+      <span *ngIf="listaSeleccionada.length>0">{{listaSeleccionada.join(', ')}}</span>
+      <i class="fa fa-angle-down"></i>
+    </button>
+
+    <div class="drop-show" *ngIf="mostrarDesplegable">
+      <label *ngFor="let item of lista">
+        <input type="checkbox" [(ngModel)]="item.seleccionado"
+               (change)="obtenerValorSeleccionado(item.seleccionado,item.nombre)" />
+        <span>{{item.nombre}}</span>
+      </label>
+    </div>
+  </div>
+</div>

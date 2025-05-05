@@ -1,0 +1,83 @@
+<div class="cont-principal">
+
+
+
+  <div class="cont-consultar-unidad">
+
+    <h2>Consultar Unidad Regional</h2>
+
+    @if (unidadesRegionalesOriginales) {
+    @if (unidadesRegionalesOriginales.length > 0 ) {
+
+    <form class="cont-buscador row align-items-center" [formGroup]="contenedorFormulario">
+      <div class="contenedor-filtro col-md-4">
+
+        <label for="filtro" class="me-2">Valor:</label>
+        <input type="text" id="filtro" class="form-control me-3" [formControl]="contenedorFormulario.controls.valor">
+
+      </div>
+
+      <div class="contenedor-filtro col-md-4">
+        <label for="filtro">Filtro:</label>
+        <select id="filtro" class="form-select" [formControl]="contenedorFormulario.controls.filtro">
+          <option value="identificador">Identificador</option>
+          <option value="nombre">Nombre de Ubicación</option>
+        </select>
+      </div>
+    </form>
+
+
+    <div class="cont-tabla row">
+
+
+      <table class="col-md-12" mat-table [dataSource]="unidadesRegionales">
+
+        <ng-container matColumnDef="IDENTIFICADOR">
+          <th mat-header-cell *matHeaderCellDef> IDENTIFICADOR</th>
+          <td mat-cell *matCellDef="let unidad">
+            {{unidad.identificador}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NOMBRE DE UBICACIÓN">
+          <th mat-header-cell *matHeaderCellDef> NOMBRE DE UBICACIÓN </th>
+          <td mat-cell *matCellDef="let unidad">
+            {{unidad.nombreUbicacion}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GESTIÓN">
+          <th mat-header-cell *matHeaderCellDef> GESTIÓN </th>
+          <td mat-cell *matCellDef="let unidad">
+            <mat-icon (click)="abrirEditarUnidadRegional(unidad)">create</mat-icon>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="atributosUnidad"></tr>
+        <tr mat-row *matRowDef="let row; columns: atributosUnidad;"></tr>
+      </table>
+
+
+
+    </div>
+
+    <div class="col-md-6">
+      <button class="btn btn-volver" routerLink="/menu-administrador">Volver</button>
+    </div>
+
+    }
+
+    @else {
+    <p>No existen Unidades Regionales registradas</p>
+    }
+    }
+    @else {
+    <animacion-carga></animacion-carga>
+    }
+
+  </div>
+
+
+
+
+</div>

@@ -1,0 +1,152 @@
+<div>
+
+    <div class="contenedor-principal">
+
+        <div></div>
+
+        <div class="contenedor-form">
+
+            <form [formGroup]="contenedorFormulario">
+                <h2>Agregar Operario</h2>
+
+                <section class="row mb-3 align-items-center" appearance="outline">
+                    <label class="col-md-4">IDENTIFICADOR</label>
+                    <div class="col-md-8">
+                        <input matInput type="text" placeholder="Inserte un identificador único"
+                            [formControl]="contenedorFormulario.controls.identificador">
+
+                    </div>
+                    <span
+                        class="errores">{{accionesFormulario.obtenerErroresIdentificador(contenedorFormulario)}}</span>
+                </section>
+
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">NOMBRE DE USUARIO</label>
+                    <div class="col-md-8">
+                        <input type="text" placeholder="Inserte un nombre de usuario único"
+                            [formControl]="contenedorFormulario.controls.nombreUsuario">
+                    </div>
+                    <span
+                        class="errores">{{accionesFormulario.obtenerErroresNombreUsuario(contenedorFormulario)}}</span>
+
+                </section>
+
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">CONTRASEÑA</label>
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center">
+                            <input type="password" class="form-control" placeholder="Inserte una contraseña"
+                                [formControl]="contenedorFormulario.controls.contrasenia" style="flex: 1;">
+                            <div (pointerenter)="habilitarMensajeInformativo()" (pointerleave)="ocultarMensajeInformativo()"
+                                class="hover-target ms-2">
+                                <img src="iconoInfo.png" alt="info">
+                            </div>
+                        </div>
+                    </div>
+                    <span class="errores">{{accionesFormulario.obtenerErroresContrasenia(contenedorFormulario)}}</span>
+                    <span class="errores" *ngIf="mostrarMensajeInformativo">Una contraseña segura debe tener al menos: ocho caracteres, una letra
+                        mayúscula, una letra minúscula, un número y un caracter especial.</span>
+                </section>
+
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">CORREO</label>
+                    <div class="col-md-8">
+                        <input type="text" placeholder="Inserte el nombre"
+                            [formControl]="contenedorFormulario.controls.correo">
+                    </div>
+                    <span class="errores">{{accionesFormulario.obtenerErroresCorreo(contenedorFormulario)}}</span>
+                </section>
+
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">NOMBRE</label>
+                    <div class="col-md-8">
+                        <input type="text" placeholder="Inserte el nombre"
+                            [formControl]="contenedorFormulario.controls.nombre">
+                    </div>
+                    <span class="errores">{{accionesFormulario.obtenerErroresNombre(contenedorFormulario)}}</span>
+                </section>
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">APELLIDOS</label>
+                    <div class="col-md-8">
+                        <input type="text" placeholder="Inserte los apellidos"
+                            [formControl]="contenedorFormulario.controls.apellido">
+                    </div>
+                    <span class="errores">{{accionesFormulario.obtenerErroresApellidos(contenedorFormulario)}}</span>
+                </section>
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">OCUPACIÓN</label>
+                    <div class="col-md-8">
+                        <select [formControl]="contenedorFormulario.controls.rol">
+                            <option value="TPM">Técnico de Protección y Medición</option>
+                            <option value="TLT">Técnico de Línea de Transmisión</option>
+                            <option value="SPRV">Supervisor</option>
+                        </select>
+                    </div>
+                    <span class="errores">{{accionesFormulario.obtenerErroresRol(contenedorFormulario)}}</span>
+                </section>
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">UNIDAD REGIONAL A ASIGNAR</label>
+                    <div class="col-md-8">
+                        <select [formControl]="contenedorFormulario.controls.unidadRegionalId">
+                            @for (unidadRegional of unidadesRegionales; track $index) {
+                            <option value={{unidadRegional.id}}>
+                                <span>{{unidadRegional.identificador}}</span>
+                                {{unidadRegional.nombreUbicacion}}
+                            </option>
+                            }
+                        </select>
+                    </div>
+                    <span *ngIf="unidadesRegionales.length === 0" class="errores">Debe registrar Unidades Regionales
+                        para poder avanzar</span>
+                    <span
+                        class="errores">{{accionesFormulario.obtenerErroresUnidadRegionalId(contenedorFormulario)}}</span>
+                </section>
+
+                <section class="row mb-3 align-items-center">
+                    <label class="col-md-4">SUBESTACIÓN A ASIGNAR</label>
+                    <div class="col-md-8">
+                        <select [formControl]="contenedorFormulario.controls.subestacionId">
+                            @for (subestacion of subestaciones; track $index) {
+                            <option value={{subestacion.id}}>
+                                <span>{{subestacion.identificador}}</span>
+                                {{subestacion.nombreUbicacion}}
+                            </option>
+                            }
+                        </select>
+                    </div>
+                    <span *ngIf="subestaciones.length === 0 && contenedorFormulario.value.unidadRegionalId"
+                        class="errores">No existen subestaciones asociadas la Unidad Regional</span>
+                    <span
+                        class="errores">{{accionesFormulario.obtenerErroresSubestacionId(contenedorFormulario)}}</span>
+                </section>
+                <span [ngClass]="{'mensaje-exito': exitoOperacion, 'mensaje-error': !exitoOperacion}">
+                    {{mensajeResultado}}
+                </span>
+                <div class="contenedor-botones row mb-3 align-items-center">
+
+                    <div class="col-md-3 col-12">
+                        <button class="btn btn-volver" type="button" (click)="verificarAbandonoFormulario()">
+                            VOLVER
+                        </button>
+                    </div>
+
+                    <div class="col-md-9 col-12">
+                        <button class="btn btn-limpiar" type="button"
+                            (click)="accionesFormulario.limpiarFormulario(contenedorFormulario)"
+                            [disabled]="contenedorFormulario.pristine">
+                            LIMPIAR
+                        </button>
+                        <button class="btn btn-agregar" type="submit" [disabled]="contenedorFormulario.invalid"
+                            (click)="registrarNuevoUsuario()">
+                            GUARDAR
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

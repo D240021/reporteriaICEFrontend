@@ -1,0 +1,73 @@
+<div class="cont-principal">
+
+  <div></div>
+
+  <div class="cont-consultar-linea">
+
+    <h2>Consultar Línea de Transmisión</h2>
+
+    @if (lineasTransmisionOriginales) {
+    @if (lineasTransmisionOriginales.length > 0 ) {
+
+    <section class="cont-buscador row align-items-center">
+      <div class="contenedor-filtro col-md-4">
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor" class="form-control" [formControl]="contenedorFormulario.controls.valor">
+      </div>
+
+      <div class="contenedor-filtro col-md-4">
+        <label for="filtro">Filtro:</label>
+        <select id="filtro" class="form-select" [formControl]="contenedorFormulario.controls.filtro">
+          <option value="identificador">Identificador</option>
+          <option value="nombre">Nombre de Ubicación</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="cont-tabla row">
+
+      <table class="col-md-12" mat-table [dataSource]="lineasTransmision">
+
+        <ng-container matColumnDef="IDENTIFICADOR">
+          <th mat-header-cell *matHeaderCellDef> IDENTIFICADOR</th>
+          <td mat-cell *matCellDef="let linea">
+            {{linea.identificador}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="NOMBRE DE UBICACIÓN">
+          <th mat-header-cell *matHeaderCellDef> NOMBRE DE UBICACIÓN </th>
+          <td mat-cell *matCellDef="let linea">
+            {{linea.nombreUbicacion}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GESTIÓN">
+          <th mat-header-cell *matHeaderCellDef> GESTIÓN </th>
+          <td mat-cell *matCellDef="let linea">
+            <mat-icon (click)="abrirEditarLineaTransmision(linea)">create</mat-icon>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="atributosLinea"></tr>
+        <tr mat-row *matRowDef="let row; columns: atributosLinea;"></tr>
+      </table>
+
+      <div class="col-md-6">
+        <button class="btn btn-volver" routerLink="/menu-administrador">Volver</button>
+      </div>
+
+    </div>
+    }
+
+    @else {
+    <p>No existen Líneas de transmisión registradas</p>
+    }
+    }
+    @else {
+    <animacion-carga></animacion-carga>
+    }
+
+  </div>
+</div>

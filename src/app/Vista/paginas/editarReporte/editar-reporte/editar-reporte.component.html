@@ -1,0 +1,48 @@
+<div>
+
+  <h1>Editar Reporte</h1>
+
+  <form [formGroup]="contenedorFormulario">
+
+    <section>
+      <label>MAPA DE DESCARGAS</label>
+      <input type="file" id="mapaDescargas" class="form-control"
+        (change)="convertirImagenArregloBytes($event)"
+        accept="image/*">
+      <label for="mapaDescargas">Subir archivo</label>
+    </section>
+    <span class="errores">{{mensajeErrorImagen}}</span>
+
+
+
+    <section>
+      <label>OBSERVACIONES</label>
+      <textarea class="form-control" rows="5" [formControl]="contenedorFormulario.controls.observaciones"></textarea>
+    </section>
+    <span class="errores">{{accionesFormulario.obtenerErroresObservaciones(contenedorFormulario)}}</span>
+
+
+    <div class="contenedor-botones">
+
+      <section>
+
+        <button class="btn" type="button" [disabled]="contenedorFormulario.pristine"
+          (click)="accionesFormulario.limpiarFormulario(contenedorFormulario)">
+          LIMPIAR
+        </button>
+        <button class="btn" type="submit" [disabled]="contenedorFormulario.invalid || mensajeErrorImagen !== ''"
+        (click)="abrirCuadroDialogoConfirmacionGuardado()">
+          ACTUALIZAR
+        </button>
+
+      </section>
+
+    </div>
+
+  </form>
+
+
+
+  <button class="btn" type="button" (click)="verificarAbandonoFormulario()">VOLVER</button>
+
+</div>

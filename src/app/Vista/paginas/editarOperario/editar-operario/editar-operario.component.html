@@ -1,0 +1,53 @@
+<div class="manto">
+
+  <mat-dialog-content>
+    <h2 mat-dialog-title>Editar Operario</h2>
+    <label class="col-md-4">NOMBRE DE USUARIO</label>
+    <div class="col-md-8">
+      <input type="text" placeholder="Inserte un nombre de usuario único"
+        [formControl]="contenedorFormulario.controls.nombreUsuario">
+    </div>
+    <span class="errores">{{accionesFormulario.obtenerErroresNombreUsuario(contenedorFormulario)}}</span>
+
+    <label class="col-md-4">CORREO</label>
+    <div class="col-md-8">
+      <input type="text" placeholder="Inserte el nombre" [formControl]="contenedorFormulario.controls.correo">
+    </div>
+    <span class="errores">{{accionesFormulario.obtenerErroresCorreo(contenedorFormulario)}}</span>
+
+
+    <label class="col-md-4">NOMBRE</label>
+    <div class="col-md-8">
+      <input type="text" placeholder="Inserte el nombre" [formControl]="contenedorFormulario.controls.nombre">
+    </div>
+    <span class="errores">{{accionesFormulario.obtenerErroresNombre(contenedorFormulario)}}</span>
+
+    <label class="col-md-4">APELLIDOS</label>
+    <div class="col-md-8">
+      <input type="text" placeholder="Inserte los apellidos" [formControl]="contenedorFormulario.controls.apellido">
+    </div>
+    <span class="errores">{{accionesFormulario.obtenerErroresApellidos(contenedorFormulario)}}</span>
+    <span class="errores">
+      {{mensajeResultado}}
+    </span>
+    <mat-dialog-actions>
+
+      <button class="btn btn-volver" type="button" (click)="cerrarCuadroDialogo()">
+        CERRAR
+      </button>
+
+      <button class="btn btn-limpiar" type="button" (click)="accionesFormulario.limpiarFormulario(contenedorFormulario)"
+        [disabled]="contenedorFormulario.pristine">
+        LIMPIAR
+      </button>
+      <button class="btn btn-agregar" type="submit"
+        [disabled]="contenedorFormulario.invalid || contenedorFormulario.pristine || !esFormularioModificado()"
+        (click)="guardarCambios()">
+        GUARDAR
+      </button>
+    </mat-dialog-actions>
+
+  </mat-dialog-content>
+
+
+</div>

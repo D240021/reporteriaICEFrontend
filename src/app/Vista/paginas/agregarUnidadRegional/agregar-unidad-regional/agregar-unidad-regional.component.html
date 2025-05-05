@@ -1,0 +1,55 @@
+<div>
+
+  <div class="contenedor-principal">
+
+    <div></div>
+
+    <div class="contenedor-form">
+
+
+      <form [formGroup]="contenedorFormulario">
+        <h2>Agregar Unidad Regional</h2>
+        <section class="row mb-3 align-items-center">
+          <label class="col-md-4">IDENTIFICADOR</label>
+          <div class="col-md-8">
+            <input type="text" placeholder="Inserte un identificador único"
+              [formControl]="contenedorFormulario.controls.identificador">
+          </div>
+          <span class="errores">{{accionesFormulario.obtenerErroresIdentificador(contenedorFormulario)}}</span>
+        </section>
+
+        <section class="row mb-3 align-items-center">
+          <label class="col-md-4">NOMBRE</label>
+          <div class="col-md-8">
+            <input type="text" placeholder="Inserte un nombre de ubicación"
+              [formControl]="contenedorFormulario.controls.nombreUbicacion">
+          </div>
+          <span class="errores">{{accionesFormulario.obtenerErroresNombre(contenedorFormulario)}}</span>
+        </section>
+
+        <span [ngClass]="{'mensaje-exito': exitoOperacion, 'mensaje-error': !exitoOperacion}">
+          {{mensajeResultado}}
+        </span>
+        <div class="contenedor-botones row mb-3 align-items-center">
+
+          <div class="col-md-3 col-12">
+            <button class="btn btn-volver" mat-stroked-button type="button"
+              (click)="verificarAbandonoFormulario()">VOLVER</button>
+          </div>
+
+          <div class="col-md-9 col-12">
+            <button class="btn btn-limpiar" mat-stroked-button type="button"
+              (click)="accionesFormulario.limpiarFormulario(contenedorFormulario)"
+              [disabled]="contenedorFormulario.pristine">LIMPIAR</button>
+            <button class="btn btn-agregar" mat-stroked-button type="submit" [disabled]="contenedorFormulario.invalid"
+              (click)="registrarNuevaUnidadRegional()">GUARDAR</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

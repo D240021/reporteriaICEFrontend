@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100vh;
+}
+
+
+:root {
+
+    /* Colores */
+    --color-principal: #545454;
+    --color-secundario-fondo: #ffffff;
+    --color-terciario-fondo: #ffde59;
+    --color-cuaternario-fondo: #ebecee;
+    --color-quintenario-fondo: #cfcfcf;
+    --color-sextario-fondo: #ececec;
+    --color-secundario: #6b6969;
+    --color-terciario: #8f8e8e;
+
+
+    /* Fuentes */
+    --fuente-inicio-sesion-titulo: "Roboto Mono", monospace;
+    --fuente-poppins: "Poppins", sans-serif;
+}
+
+a,
+button {
+    text-decoration: none;
+}
+
+mat-icon {
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.09);
+}
+
+.mensaje-error,
+.mensaje-exito,
+.errores {
+    display: grid;
+    place-content: center;
+}

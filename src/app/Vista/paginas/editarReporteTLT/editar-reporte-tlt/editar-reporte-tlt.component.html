@@ -1,0 +1,75 @@
+<div>
+
+  <div class="contenedor-principal">
+
+    <div></div>
+
+    <div class="contenedor-form">
+
+      <form [formGroup]="contenedorFormulario">
+        <h2>Editar Reporte</h2>
+
+        <section class="row mb-3 align-items-center">
+          <label class="col-md-4">EVIDENCIA (FOTO)</label>
+          <div class="col-md-8">
+            <input type="file" multiple placeholder="Subir archivos" (change)="convertirImagenArregloBytes($event)"
+              accept="image/*">
+          </div>
+        </section>
+        <span class="errores">{{mensajeErrorImagen}}</span>
+
+
+        <section class="row mb-3 align-items-center">
+          <label class="col-md-4">CAUSAS</label>
+          <div class="col-md-8">
+            <div class="causa-list mt-2">
+              <textarea rows="4" placeholder="Escriba las causas"
+                [formControl]="contenedorFormulario.controls.causas"></textarea>
+            </div>
+            <span class="errores">{{accionesFormulario.obtenerErroresCausa(contenedorFormulario)}}</span>
+          </div>
+        </section>
+
+        <section class="row mb-3 align-items-center">
+          <label class="col-md-4">FECHA Y HORA</label>
+          <div class="col-md-8">
+            <input type="datetime-local" [formControl]="contenedorFormulario.controls.fechaHora">
+          </div>
+          <span class="errores">{{accionesFormulario.obtenerErroresFechaHora(contenedorFormulario)}}</span>
+        </section>
+
+        <section class="row mb-3 align-items-center">
+          <label class="col-md-4">OBSERVACIONES</label>
+          <div class="col-md-8">
+            <textarea rows="4" placeholder="Escriba las observaciones"
+              [formControl]="contenedorFormulario.controls.observaciones"></textarea>
+          </div>
+        </section>
+
+        <div class="contenedor-botones row mb-3 align-items-center">
+
+          <div class="col-md-3 col-12">
+            <button class="btn btn-volver" type="button" (click)="verificarAbandonoFormulario()">
+              VOLVER
+            </button>
+          </div>
+
+          <div class="col-md-9 col-12">
+            <button class="btn btn-limpiar" type="button"
+              (click)="accionesFormulario.limpiarFormulario(contenedorFormulario)"
+              [disabled]="contenedorFormulario.pristine">
+              LIMPIAR
+            </button>
+            <button class="btn btn-actualizar" type="submit" [disabled]="contenedorFormulario.invalid || mensajeErrorImagen !== ''"
+              (click)="abrirCuadroDialogoConfirmacionGuardado()">
+              GUARDAR
+            </button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
