@@ -41,7 +41,6 @@ export class InicioSesionComponent{
 
   verificarCredencialesUsuario() {
     const contraseniaEncriptada = this.encriptacion.encriptarAES(this.contenedorFormulario.value.contrasenia || '');
-    console.log("Contra original: " + this.contenedorFormulario.value.contrasenia);
     const credenciales: AutenticacionUsuario = {
       nombreUsuario: this.contenedorFormulario.value.nombreUsuario || '',
       contrasenia: contraseniaEncriptada
