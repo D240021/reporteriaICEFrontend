@@ -46,7 +46,6 @@ export class InicioSesionComponent{
       nombreUsuario: this.contenedorFormulario.value.nombreUsuario || '',
       contrasenia: contraseniaEncriptada
     };
-    console.log("Contra encriptada: "+credenciales.contrasenia);
     this.habilitarCarga = true;
     this.usuarioService.esUsuarioAutenticado(credenciales).subscribe(respuesta => {
         if (respuesta && typeof respuesta === 'object') {

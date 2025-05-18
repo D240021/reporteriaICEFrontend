@@ -13,7 +13,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/reporteria-ice",
+            "outputPath": "dist/reporteriaICEFrontend",
+            "baseHref": "/reporteriaICEFrontend/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -37,6 +38,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/reporteriaICEFrontend/",
               "budgets": [
                 {
                   "type": "initial",
